@@ -1,4 +1,5 @@
 use std::env;
+mod audio;
 mod morse;
 
 fn main() {
@@ -18,6 +19,8 @@ fn main() {
     }
 
     println!();
+
+    audio::play_audio();
 
     // println!("{}", morse::MORSE_CODE.get(&'H').unwrap());
 
