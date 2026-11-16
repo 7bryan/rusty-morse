@@ -12,10 +12,10 @@ fn main() {
         return;
     };
 
-    let morse_token: Vec<String> = morse::translate(&messages);
+    let morse_token = morse::translate(messages);
     // println!("{}", morse_token.join(" "));
 
     println!();
 
-    audio::play_audio();
+    audio::play_morse(&morse_token);
 }
