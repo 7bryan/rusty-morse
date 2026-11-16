@@ -12,19 +12,10 @@ fn main() {
         return;
     };
 
-    for msg in messages.chars() {
-        if let Some(code) = morse::MORSE_CODE.get(&msg.to_ascii_uppercase()) {
-            print!("{} ", code);
-        }
-    }
+    let morse_token: Vec<String> = morse::translate(&messages);
+    // println!("{}", morse_token.join(" "));
 
     println!();
 
     audio::play_audio();
-
-    // println!("{}", morse::MORSE_CODE.get(&'H').unwrap());
-
-    // if let Some(code) = morse::MORSE_CODE.get(&'H') {
-    //     println!("{}", code);
-    // }
 }
