@@ -41,3 +41,14 @@ pub static MORSE_CODE: LazyLock<HashMap<char, &'static str>> = LazyLock::new(|| 
         ('9', "----."),
     ])
 });
+
+pub fn translate(input: &str) -> Vec<String> {
+    let mut morse_token: Vec<String> = Vec::new();
+    for ch in input.chars() {
+        if let Some(code) = MORSE_CODE.get(&ch.to_ascii_uppercase()) {
+            morse_token.push((*code).to_string());
+        }
+    }
+
+    morse_token
+}
