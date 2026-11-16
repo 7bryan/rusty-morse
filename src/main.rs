@@ -13,9 +13,6 @@ fn main() {
     };
 
     let morse_token = morse::translate(messages);
-    // println!("{}", morse_token.join(" "));
-
-    println!();
 
     audio::play_morse(&morse_token);
 }
