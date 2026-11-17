@@ -6,7 +6,7 @@ fn main() {
     let args: Vec<String> = env::args().collect();
 
     let messages = if args.len() > 1 {
-        &args[1]
+        &args[1..].join(" ")
     } else {
         println!("Please provided a valid args\nUsage: cargo run -- <morse-code>");
         return;
