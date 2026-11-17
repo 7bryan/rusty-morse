@@ -4,13 +4,19 @@ use std::io::Write;
 use std::time::Duration;
 use std::{io, thread};
 
-pub fn play_morse(tokens: &[(char, String)]) {
+pub fn play_morse(tokens: &[(char, &'static str)]) {
     let mut _handle = DeviceSinkBuilder::open_default_sink().expect("Failed to open audio stream");
     _handle.log_on_drop(false); // silence the DeviceSink message
 
     let player = Player::connect_new(_handle.mixer());
 
     for (ch, code) in tokens {
+        if *ch == ' ' {
+            print!("/  ");
+            io::stdout().flush().unwrap();
+            thread::sleep(Duration::from_millis(320)); // + 240ms from previous letter = 560ms
+            continue;
+        }
         print!("{} [", ch);
         io::stdout().flush().unwrap();
 
@@ -32,7 +38,7 @@ pub fn play_morse(tokens: &[(char, String)]) {
 
         print!("]  ");
         io::stdout().flush().unwrap();
-        thread::sleep(Duration::from_millis(240));
+        thread::sleep(Duration::from_millis(160));
     }
 
     println!();
